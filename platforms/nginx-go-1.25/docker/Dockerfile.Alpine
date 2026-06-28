@@ -49,7 +49,6 @@ COPY config/supervisor/conf.d/. /etc/supervisor/conf.d/
 
 # Create project root
 RUN mkdir -p /var/www
-
 WORKDIR /var/www
 
 RUN chown -R ${USER}:${GROUP} /var/www /run /var/lib/nginx /var/log/nginx
@@ -65,5 +64,5 @@ RUN go install github.com/air-verse/air@latest
 RUN sudo cp /home/${USER}/go/bin/air /usr/local/bin/air
 ENV PATH="${PATH}:/usr/local/go/bin:/go/bin:/home/${USER}/go/bin"
 
-# Start supervisor, which manages nginx and your Go app
+# Start supervisor, which manages nginx and Go application
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
